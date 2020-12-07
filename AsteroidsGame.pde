@@ -1,5 +1,6 @@
 Spaceship bob = new Spaceship();
 Star [] julie = new Star[200];
+ArrayList <Asteroid> melody = new ArrayList <Asteroid> ();
 
 public void setup() 
 {
@@ -7,6 +8,9 @@ public void setup()
   background(0);
   for (int i=0; i<julie.length; i++){
     julie[i] = new Star(); 
+  }
+  for(int j=0; j<20; j++){
+    melody.add(new Asteroid()); 
   }
 }
 public void draw() 
@@ -17,7 +21,13 @@ public void draw()
   }
   bob.move();
   bob.show();
- 
+  for (int h=0; h<melody.size(); h++){
+    melody.get(h).show();
+    melody.get(h).move();
+    if (dist(melody.get(h).getX(), melody.get(h).getY(), bob.getX(), bob.getY()) < 20) {
+      melody.remove(h); 
+    }
+  }
 }
 public void keyPressed()
 {
